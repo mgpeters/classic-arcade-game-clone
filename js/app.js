@@ -60,6 +60,8 @@ const   allEnemies = [],
 // Player.handleInput() method. You don't need to modify this.
 */
 
+const player = new Player();
+
 document.addEventListener('keyup', function(e) {
     var allowedKeys = {
         37: 'left',
