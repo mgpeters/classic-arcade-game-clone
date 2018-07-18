@@ -16,3 +16,10 @@ class Player extends Adam{
         this.sprite += 'char-boy.png';
     }
 }
+
+class Enemy extends Adam{
+    constructor(){
+        super();
+        this.sprite += 'enemy-bug.png';
+    }
+}
