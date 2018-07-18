@@ -9,3 +9,7 @@ class Adam {
         ctx.drawImage(Resources.get(this.sprite), this.x * 100, this.y * 82);
     }
 }
+
+class Player extends Adam{
+    
+}
