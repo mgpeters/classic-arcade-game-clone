@@ -11,5 +11,8 @@ class Adam {
 }
 
 class Player extends Adam{
-    
+    constructor(){
+        super();
+        this.sprite += 'char-boy.png';
+    }
 }
