@@ -27,6 +27,8 @@ class Player extends Adam{
     constructor(){
         super();
         this.sprite += 'char-boy.png';
+        this.moving = false;
+        this.win = false;
     }
     handleInput(input){
         switch(input){
@@ -39,7 +41,7 @@ class Player extends Adam{
                 break;
             case 'up':
                 if(this.y > 0){
-                    this.y -= 1; 
+                    this.y -= 1;
                 }else{
                     this.y = this.y;
                 }
@@ -61,6 +63,20 @@ class Player extends Adam{
             default:
                 break;
         }
+        this.moving = true;
+    }
+    update(dt){
+        super.update();
+        if(this.isOutOfBoundsY && !this.moving && !this.win){
+            this.win = true;
+            this.x = 2;
+            this.y = 5;
+        }
+        this.win = false;
+    }
+    render(){
+        super.render();
+        this.moving = false;
     }
 }
 class Enemy extends Adam{
