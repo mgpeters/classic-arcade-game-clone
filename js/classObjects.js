@@ -7,7 +7,7 @@ class Adam {
     render(){
         ctx.drawImage(Resources.get(this.sprite), this.x * 100, this.y * 82);
     }
-    update(){
+    update(dt){
         this.isOutOfBoundsX = this.x > 5;
         this.isOutOfBoundsY = this.y < 1;
     }
@@ -26,5 +26,13 @@ class Enemy extends Adam{
         this.sprite += 'enemy-bug.png';
         this.x = x;
         this.y = y;
+    }
+    update(dt){
+        super.update()
+        if(this.isOutOfBoundsX){
+            this.x = -1;
+        }else{
+            this.x += dt + Math.random() / 7; 
+        }
     }
 }

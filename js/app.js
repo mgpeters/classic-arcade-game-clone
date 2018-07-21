@@ -61,7 +61,7 @@ const   allEnemies = [],
 */
 
 const   player = new Player(),
-        allEnemies = [new Enemy(0, 1), new Enemy(0, 2), new Enemy(0, 3)];
+        allEnemies = [new Enemy(3, 1), new Enemy(2, 2), new Enemy(5, 3)];
 
 document.addEventListener('keyup', function(e) {
     var allowedKeys = {
