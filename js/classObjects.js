@@ -1,3 +1,5 @@
+
+//ES6 Class breakdown help from: https://zoom.us/recording/play/aulotDlzKFegQFIJTaTzKgWvNkVsYtlwO454vL1UPE1Cm6lOUBQCtfVurPOIAGAS?startTime=1529542978000 
 class Adam {
     constructor(){
         this.sprite = 'images/';
