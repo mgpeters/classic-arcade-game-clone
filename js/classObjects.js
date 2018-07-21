@@ -11,6 +11,16 @@ class Adam {
         this.isOutOfBoundsX = this.x > 5;
         this.isOutOfBoundsY = this.y < 1;
     }
+    checkCollisions(pngSprite){
+        if (this.y === pngSprite.y){
+            if (this.x >= pngSprite.x - 0.7 && this.x <= pngSprite.x + 0.7){
+                return true;
+            }
+        }
+        else{
+            return false;
+        }
+    }
 }
 
 class Player extends Adam{
@@ -53,7 +63,6 @@ class Player extends Adam{
         }
     }
 }
-
 class Enemy extends Adam{
     constructor(x, y){
         super();
