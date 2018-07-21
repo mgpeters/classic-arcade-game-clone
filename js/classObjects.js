@@ -7,6 +7,10 @@ class Adam {
     render(){
         ctx.drawImage(Resources.get(this.sprite), this.x * 100, this.y * 82);
     }
+    update(){
+        this.isOutOfBoundsX = this.x > 5;
+        this.isOutOfBoundsY = this.y < 1;
+    }
 }
 
 class Player extends Adam{
