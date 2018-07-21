@@ -18,6 +18,40 @@ class Player extends Adam{
         super();
         this.sprite += 'char-boy.png';
     }
+    handleInput(input){
+        switch(input){
+            case 'left':
+                if(this.x > 0){
+                    this.x -= 1;
+                }else{
+                    this.x = this.x;
+                }
+                break;
+            case 'up':
+                if(this.y > 0){
+                    this.y -= 1; 
+                }else{
+                    this.y = this.y;
+                }
+                break;
+            case 'right':
+                if(this.x < 4){
+                    this.x += 1;
+                }else{
+                    this.x = this.x;
+                }
+                break;
+            case('down'):
+                if(this.y < 5){
+                    this.y += 1;
+                }else{
+                    this.y = this.y;
+                }
+                break;
+            default:
+                break;
+        }
+    }
 }
 
 class Enemy extends Adam{
