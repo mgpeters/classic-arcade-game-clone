@@ -1,18 +1,11 @@
-function Adam(){
-    this.constructor = function adamConstructor(){
-            this.sprite = 'images/';
-            this.x = 2;
-            this.y = 5;
-    }
-    this.render = function adamRender(){
-        this.sprite = 'images/';
-        this.x = 2;
-        this.y = 5;
-    }
-    this.update = function update(dt){
-        this.isOutOfBoundsX = this.x > 5;
-        this.isOutOfBoundsY = this.y < 1;
-    }
+// Enemies our player must avoid
+var Enemy = function(x, y) {
+    // The image/sprite for our enemies, this uses
+    // a helper we've provided to easily load images
+    this.sprite = 'images/enemy-bug.png';
+    // Starting positions
+    this.x = x;
+    this.y = y;
     this.checkCollisions = function checkCollisions(pngSprite){
         if (this.y === pngSprite.y){
             if (this.x >= pngSprite.x - 0.7 && this.x <= pngSprite.x + 0.7){
@@ -23,10 +16,33 @@ function Adam(){
             return false;
         }
     }
-}
+};
+
+// Update the enemy's position, required method for game
+// Parameter: dt, a time delta between ticks
+Enemy.prototype.update = function(dt) {
+    // You should multiply any movement by the dt parameter
+    // which will ensure the game runs at the same speed for
+    // all computers.
+
+    if(this.isOutOfBoundsX){
+        this.x = -1;
+    } else{
+        this.x += dt + Math.random() / 7; 
+    }
+};
+
+// Draw the enemy on the screen, required method for game
+Enemy.prototype.render = function() {
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+};
+
+// Now write your own player class
+// This class requires an update(), render() and
+// a handleInput() method.
+
 function Player(){
-    Adam.call(this);
-    this.sprite += 'char-boy.png';
+    this.sprite = '/images/char-boy.png';
     this.moving = false;
     this.win = false;
     this.handleInput = function playerHandleInput(input){
@@ -65,7 +81,6 @@ function Player(){
         this.moving = true;
     }
     this.update = function playerUpdate(dt){
-        Adam.call(this, dt)
         if(this.isOutOfBoundsY && !this.moving && !this.win){
             this.win = true;
             this.x = 2;
@@ -74,31 +89,29 @@ function Player(){
         this.win = false;
     }
     this.render = function playerRender(){
-        Adam.call(this);
         this.moving = false;
     }
-}
-function Enemy(){
-    this.constructor = function enemyConstructor(x, y){
-        Adam.call(this,x ,y);
-        this.sprite += 'enemy-bug.png';
-        this.x = x;
-        this.y = y;
-    }
-    this.update = function enemyUpdate(dt){
-        Adam.call(this, dt);
-        if(this.isOutOfBoundsX){
-            this.x = -1;
-        }else{
-            this.x += dt + Math.random() / 7; 
+    this.checkCollisions = function checkCollisions(pngSprite){
+        if (this.y === pngSprite.y){
+            if (this.x >= pngSprite.x - 0.7 && this.x <= pngSprite.x + 0.7){
+                return true;
+            }
+        }
+        else{
+            return false;
         }
     }
 }
 
+// Now instantiate your objects.
+// Place all enemy objects in an array called allEnemies
+// Place the player object in a variable called player
 
 const   player = new Player(),
         allEnemies = [new Enemy(3, 1), new Enemy(2, 2), new Enemy(5, 3)];
 
+// This listens for key presses and sends the keys to your
+// Player.handleInput() method. You don't need to modify this.
 
 document.addEventListener('keyup', function(e) {
     var allowedKeys = {
