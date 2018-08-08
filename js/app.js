@@ -45,6 +45,18 @@ Enemy.prototype.checkCollisions = function(pngSprite){
 // a handleInput() method.
 function Player(){
     this.sprite = '/images/char-boy.png';
+
+    this.checkCollisions = function(pngSprite){
+        if (this.y === pngSprite.y){
+            if (this.x >= pngSprite.x - 0.7 && this.x <= pngSprite.x + 0.7){
+                return true;
+            }
+        }
+        else{
+            return false;
+        }
+
+    }
 }
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
