@@ -1,4 +1,3 @@
-
 //ES6 Class breakdown help from: https://zoom.us/recording/play/aulotDlzKFegQFIJTaTzKgWvNkVsYtlwO454vL1UPE1Cm6lOUBQCtfVurPOIAGAS?startTime=1529542978000 
 class Adam {
     constructor(){
@@ -97,3 +96,20 @@ class Enemy extends Adam{
         }
     }
 }
+
+const   player = new Player(),
+        allEnemies = [new Enemy(3, 1), new Enemy(2, 2), new Enemy(5, 3)];
+
+// This listens for key presses and sends the keys to your
+// Player.handleInput() method. You don't need to modify this.
+
+document.addEventListener('keyup', function(e) {
+    var allowedKeys = {
+        37: 'left',
+        38: 'up',
+        39: 'right',
+        40: 'down'
+    };
+
+    player.handleInput(allowedKeys[e.keyCode]);
+});
