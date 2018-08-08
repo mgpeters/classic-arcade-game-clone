@@ -44,7 +44,7 @@ Enemy.prototype.checkCollisions = function(pngSprite){
 // This class requires an update(), render() and
 // a handleInput() method.
 function Player(){
-    this.sprite = '/images/char-boy.png';
+    this.sprite = 'images/char-boy.png';
 
     this.checkCollisions = function(pngSprite){
         if (this.y === pngSprite.y){
@@ -55,15 +55,56 @@ function Player(){
         else{
             return false;
         }
+    };
+    this.update = function(dt){
+        this.isOutOfBoundsX = this.x > 5;
+        this.isOutOfBoundsY = this.y < 1;
+    };
+}
+Player.prototype.render = function(){
+        ctx.drawImage(Resources.get(this.sprite), this.x * 100, this.y * 82);
+};
 
+Player.prototype.handleInput = function(input){
+    switch(input){
+        case 'left':
+            if(this.x > 0){
+                this.x -= 1;
+            }else{
+                this.x = this.x;
+            }
+            break;
+        case 'up':
+            if(this.y > 0){
+                this.y -= 1;
+            }else{
+                this.y = this.y;
+            }
+            break;
+        case 'right':
+            if(this.x < 4){
+                this.x += 1;
+            }else{
+                this.x = this.x;
+            }
+            break;
+        case('down'):
+            if(this.y < 5){
+                this.y += 1;
+            }else{
+                this.y = this.y;
+            }
+            break;
+        default:
+            break;
     }
 }
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 
-const   player = new Player(),
-        allEnemies = [new Enemy(3, 1), new Enemy(2, 2), new Enemy(5, 3)];
+const   allEnemies = [new Enemy(3, 1), new Enemy(2, 2), new Enemy(5, 3)],
+        player = new Player();
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
