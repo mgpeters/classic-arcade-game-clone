@@ -16,7 +16,7 @@ Enemy.prototype.update = function(dt) {
     // all computers.
     this.isOutofBoundsX = this.x > 5;
     this.isOutofBoundsY = this.y < 1;
-    
+
     if(this.isOutOfBoundsX){
         this.x = -1;
     }else{
@@ -25,11 +25,27 @@ Enemy.prototype.update = function(dt) {
 };
 
 // Draw the enemy on the screen, required method for game
+Enemy.prototype.render = function(){
+    ctx.drawImage(Resources.get(this.sprite), this.x * 100, this.y * 82);
+}
+//fx for collision check
+Enemy.prototype.checkCollisions = function(pngSprite){
+    if (this.y === pngSprite.y){
+        if (this.x >= pngSprite.x - 0.7 && this.x <= pngSprite.x + 0.7){
+            return true;
+        }
+    }
+    else{
+        return false;
+    }
+}
 
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
-
+function Player(){
+    this.sprite = '/images/char-boy.png';
+}
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player

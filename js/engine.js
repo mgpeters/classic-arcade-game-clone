@@ -82,7 +82,7 @@ var Engine = (function(global) {
         checkCollisions();
     }
 
-    function checkCollisions(){
+   function checkCollisions(){
         allEnemies.forEach(function checkCollisionEnemy(enemy){
             if(enemy.checkCollisions(player) || player.checkCollisions(enemy)){
                 player.x = 2;
@@ -102,7 +102,7 @@ var Engine = (function(global) {
         allEnemies.forEach(function(enemy) {
             enemy.update(dt);
         });
-       player.update();
+       //player.update();
     }
 
     /* This function initially draws the "game level", it will then call
