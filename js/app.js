@@ -45,6 +45,8 @@ Enemy.prototype.checkCollisions = function(pngSprite){
 // a handleInput() method.
 function Player(){
     this.sprite = 'images/char-boy.png';
+    this.x = 2;
+    this.y = 5;
 
     this.checkCollisions = function(pngSprite){
         if (this.y === pngSprite.y){
