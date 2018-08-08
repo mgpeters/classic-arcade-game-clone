@@ -14,8 +14,8 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-    this.isOutofBoundsX = this.x > 5;
-    this.isOutofBoundsY = this.y < 1;
+    this.isOutOfBoundsX = this.x > 5;
+    this.isOutOfBoundsY = this.y < 1;
 
     if(this.isOutOfBoundsX){
         this.x = -1;
@@ -64,7 +64,7 @@ function Player(){
     };
 }
 Player.prototype.render = function(){
-        ctx.drawImage(Resources.get(this.sprite), this.x * 100, this.y * 82);
+    ctx.drawImage(Resources.get(this.sprite), this.x * 100, this.y * 82);
 };
 
 Player.prototype.handleInput = function(input){
