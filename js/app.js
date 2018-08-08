@@ -4,6 +4,8 @@ function Enemy(x, y) {
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
     // Starting positions
+    this.x = x;
+    this.y = y;
 };
 
 // Update the enemy's position, required method for game
@@ -12,7 +14,14 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-
+    this.isOutofBoundsX = this.x > 5;
+    this.isOutofBoundsY = this.y < 1;
+    
+    if(this.isOutOfBoundsX){
+        this.x = -1;
+    }else{
+        this.x += dt + Math.random() / 7; 
+    }
 };
 
 // Draw the enemy on the screen, required method for game
