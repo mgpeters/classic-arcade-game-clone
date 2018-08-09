@@ -18,9 +18,9 @@ Enemy.prototype.update = function(dt) {
     this.isOutOfBoundsY = this.y < 1;
 
     if(this.isOutOfBoundsX){
-        this.x = -1;
+        this.x = -1; //Resets enemy position when off screen
     }else{
-        this.x += dt + Math.random() / 7; 
+        this.x += dt + Math.random() / 7; //Changes speed of enemies
     }
 };
 
