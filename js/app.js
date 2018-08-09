@@ -48,6 +48,9 @@ function Player(){
     this.x = 2;
     this.y = 5;
 
+    this.moving = false; //Win condition help from: https://zoom.us/recording/play/aulotDlzKFegQFIJTaTzKgWvNkVsYtlwO454vL1UPE1Cm6lOUBQCtfVurPOIAGAS?startTime=1529542978000 8.9.18
+    this.win = false;
+
     this.checkCollisions = function(pngSprite){
         if (this.y === pngSprite.y){
             if (this.x >= pngSprite.x - 0.7 && this.x <= pngSprite.x + 0.7){
@@ -61,10 +64,19 @@ function Player(){
     this.update = function(dt){
         this.isOutOfBoundsX = this.x > 5;
         this.isOutOfBoundsY = this.y < 1;
+
+        if(this.isOutOfBoundsY && !this.moving && !this.win){//Win condition help from: https://zoom.us/recording/play/aulotDlzKFegQFIJTaTzKgWvNkVsYtlwO454vL1UPE1Cm6lOUBQCtfVurPOIAGAS?startTime=1529542978000 8.9.18
+            this.win = true;
+            alert("You Won!!");
+            this.x = 2;
+            this.y = 5;
+        }
+        this.win = false;
     };
 }
 Player.prototype.render = function(){
     ctx.drawImage(Resources.get(this.sprite), this.x * 100, this.y * 82);
+    this.moving = false; //Win condition help from: https://zoom.us/recording/play/aulotDlzKFegQFIJTaTzKgWvNkVsYtlwO454vL1UPE1Cm6lOUBQCtfVurPOIAGAS?startTime=1529542978000 8.9.18
 };
 
 Player.prototype.handleInput = function(input){
@@ -100,6 +112,7 @@ Player.prototype.handleInput = function(input){
         default:
             break;
     }
+    this.moving = true; //Win condition help from: https://zoom.us/recording/play/aulotDlzKFegQFIJTaTzKgWvNkVsYtlwO454vL1UPE1Cm6lOUBQCtfVurPOIAGAS?startTime=1529542978000 8.9.18
 }
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
